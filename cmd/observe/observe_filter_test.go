@@ -129,6 +129,7 @@ func TestFilterLeftRight(t *testing.T) {
 		"--not", "--http-status", "200",
 		"--http-method", "get",
 		"--http-path", "/page/\\d+",
+		"--node-name", "k8s*",
 	}))
 
 	require.NoError(t, handleArgs(f, false))
@@ -140,6 +141,7 @@ func TestFilterLeftRight(t *testing.T) {
 				Verdict:    []pb.Verdict{pb.Verdict_DROPPED},
 				HttpMethod: []string{"get"},
 				HttpPath:   []string{"/page/\\d+"},
+				NodeNames:  []string{"k8s*"},
 			},
 			{
 				DestinationIp: []string{"1.2.3.4", "5.6.7.8"},
